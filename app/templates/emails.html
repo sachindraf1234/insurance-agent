@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Email Queue · Trans Arabian{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="toolbar">
+    <div>
+      <div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Email operations</div>
+      <h2 style="margin:5px 0">Email queue</h2>
+      <div class="subtle">Approved applicants arrive here automatically. Prepare the insurer Excel and send from the configured Yahoo mailbox.</div>
+    </div>
+    <form method="post" action="{{url_for('main.set_auto_send')}}">
+      <input type="hidden" name="enabled" value="{{'0' if auto_send else '1'}}">
+      <button class="btn {{'orange' if auto_send else 'gray'}}">{{'⚡ Auto-send after approval: ON · turn off' if auto_send else '⏸ Auto-send after approval: OFF · turn on'}}</button>
+    </form>
+  </div>
+  <div class="hintbox" style="margin-top:14px">
+    {% if auto_send %}<b>Auto-send is ON.</b> A Single is prepared and sent immediately after final-check approval. A Batch waits until every same-date applicant is approved, then prepares and sends the group. You can also prepare/send already-approved groups here.
+    {% else %}<b>Queue mode is ON.</b> Approved applicants appear below; prepare the Excel, review the prepared job, then click Send when you are ready. This is the recommended default.{% endif %}
+  </div>
+  <div style="margin-top:13px">{% for label,value in [('Pending',pending_count),('Sent',sent_count),('Failed',failed_count)] %}<div class="stat"><b>{{value}}</b>{{label}} emails</div>{% endfor %}</div>
+</div>
+
+<div class="card">
+  <div class="toolbar">
+    <div><h3>Approved · waiting for email preparation</h3><div class="subtle" style="font-size:11px">Singles appear as one applicant per row. Batches group approved applicants by company, type, and date.</div></div>
+    <a class="btn gray" href="{{url_for('main.review_queue',status='APPROVED')}}">View approved review rows</a>
+  </div>
+  <form method="get" action="{{url_for('main.emails')}}" style="display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin:12px 0;padding:12px;background:#f7f9fc;border:1px solid #e3e8f0;border-radius:10px">
+    <label style="margin:0">Company
+      <select name="company"><option value="ALL" {{'selected' if company_filter=='ALL'}}>All companies</option>{% for company in company_options %}<option value="{{company}}" {{'selected' if company_filter==company}}>{{company}}</option>{% endfor %}</select>
+    </label>
+    <label style="margin:0">Insurance type
+      <select name="kind"><option value="ALL" {{'selected' if kind_filter=='ALL'}}>NEW + EXTEND</option><option value="NEW" {{'selected' if kind_filter=='NEW'}}>NEW</option><option value="EXTEND" {{'selected' if kind_filter=='EXTEND'}}>EXTEND</option></select>
+    </label>
+    <label style="margin:0">Entry mode
+      <select name="mode"><option value="ALL" {{'selected' if mode_filter=='ALL'}}>Single + Batch</option><option value="SINGLE" {{'selected' if mode_filter=='SINGLE'}}>Single applicant</option><option value="BATCH" {{'selected' if mode_filter=='BATCH'}}>Batch group</option></select>
+    </label>
+    <button class="btn blue" type="submit">Show approved</button>
+    <a class="btn gray" href="{{url_for('main.emails')}}">Clear filters</a>
+  </form>
+  <div class="subtle" style="font-size:11px;margin-bottom:8px">Filters apply to this approved-applicant list. Prepared/sent job history below always shows all companies and types.</div>
+  <div style="overflow:auto">
+    <table>
+      <tr><th>Company</th><th>Insurance</th><th>Mode</th><th>Group date</th><th>People</th><th>Applicant details</th><th>Recipient</th><th>Action</th></tr>
+      {% for g in groups %}
+      <tr>
+        <td><b>{{g.company}}</b></td><td>{{g.kind}}</td><td>{{g.mode|title}}</td><td>{{g.day or 'Awaiting date sync'}}</td><td>{{g.rows|length}}</td>
+        <td>{% for a in g.rows %}<div style="margin:2px 0"><b>{{a.surname}} {{a.given_names}}</b><br><small class="subtle">Passport {{a.passport_no or '—'}} · CITY {{a.city or '—'}}{% if a.telephone %} · CONTACT {{a.telephone}}{% endif %}</small></div>{% endfor %}</td>
+        <td><b>To:</b> {{companies_cfg[g.company].email_to or 'Recipient missing'}}{% if companies_cfg[g.company].email_cc %}<br><small class="subtle"><b>CC:</b> {{companies_cfg[g.company].email_cc}}</small>{% endif %}</td>
+        <td>
+          {% if g.waiting_review %}<span class="pill">Waiting for {{g.waiting_review}} review(s)</span>
+          {% elif g.day %}
+          <form method="post" enctype="multipart/form-data" action="{{url_for('main.batches')}}" style="margin:0" onsubmit="return confirm('{% if auto_send %}Prepare and send this approved group now?{% else %}Prepare an Excel email job for this group?{% endif %}')">
+            <input type="hidden" name="company" value="{{g.company}}"><input type="hidden" name="kind" value="{{g.kind}}"><input type="hidden" name="submission_mode" value="{{g.mode}}"><input type="hidden" name="batch_date" value="{{g.day.isoformat()}}">
+            {% for a in g.rows %}<input type="hidden" name="ids" value="{{a.id}}">{% endfor %}
+            {% if auto_send %}<label style="font-weight:400;font-size:10px">Extra passport copies (optional)<input type="file" name="passport_attachments" accept=".pdf,.jpg,.jpeg,.png" multiple></label>{% endif %}
+            <button class="btn green">Prepare Excel{% if auto_send %} &amp; Send{% endif %}</button>
+          </form>
+          {% else %}<span class="pill">Awaiting main-system date</span>{% endif %}
+        </td>
+      </tr>
+      {% else %}<tr><td colspan="8" style="padding:28px;text-align:center;color:#77849a">No approved applicants match these filters. Approved records will appear here automatically.</td></tr>{% endfor %}
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="toolbar"><div><h3>Prepared email jobs</h3><div class="subtle" style="font-size:11px">The insurer Excel is attached automatically. Passports selected in each applicant’s final check are attached automatically; add extra copies here only if needed.</div></div></div>
+  <div style="overflow:auto">
+    <table><tr><th>#</th><th>Company / Type / Mode</th><th>Date</th><th>People</th><th>Recipient</th><th>Subject</th><th>Status</th><th>Action</th></tr>
+      {% for b in batches %}
+      <tr><td>{{b.id}}</td><td><b>{{b.company}} · {{b.kind}} · {{b.submission_mode}}</b></td><td>{{b.batch_date}}</td><td>{{b.applicants|length}}</td><td><b>To:</b> {{b.email_to or 'Recipient not configured'}}{% if companies_cfg[b.company].email_cc %}<br><small class="subtle"><b>CC:</b> {{companies_cfg[b.company].email_cc}}</small>{% endif %}</td><td>{{b.email_subject}}</td><td><span class="pill">{{b.status.replace('_',' ')}}</span></td><td>
+        {% if b.status in ['DRAFT','ERROR'] %}
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><a class="btn gray" href="{{url_for('main.download',bid=b.id)}}">Preview Excel</a><form method="post" enctype="multipart/form-data" action="{{url_for('main.send_batch',bid=b.id)}}" onsubmit="return confirm('Send this prepared email to {{b.email_to}}?')"><label style="font-weight:400;font-size:10px">Extra passport copies (optional)<input type="file" name="passport_attachments" accept=".pdf,.jpg,.jpeg,.png" multiple></label><button class="btn green">Send now</button></form></div>
+        {% elif b.status=='SENT' %}<span class="subtle">Sent {{b.sent_at}}</span>{% else %}<a class="btn gray" href="{{url_for('main.download',bid=b.id)}}">Preview Excel</a>{% endif %}
+      </td></tr>
+      {% else %}<tr><td colspan="8" style="padding:24px;text-align:center;color:#77849a">No prepared email jobs yet.</td></tr>{% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

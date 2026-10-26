@@ -1,0 +1,124 @@
+{% extends "base.html" %}{% block title %}{{kind}} · {{mode|title}} · Insurance{% endblock %}{% block body %}
+<div class="card">
+  <div class="toolbar"><div><div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Insurance · {{kind}}</div><h2 style="margin:5px 0">{{kind}} insurance · {{mode|title}}</h2><div class="subtle">Upload the documents and run extraction first. The selected company’s full insurer-sheet preview appears below and stays saved until Clear form.</div></div><span class="pill">Step 1 · Upload &amp; extract</span></div>
+  <div class="toolbar-actions" style="margin-top:12px"><a class="btn {{'green' if mode=='SINGLE' else 'gray'}}" href="{{url_for('main.insurance_entry',kind=kind,mode='SINGLE',company=selected_company)}}">Single applicant</a><a class="btn {{'green' if mode=='BATCH' else 'gray'}}" href="{{url_for('main.insurance_entry',kind=kind,mode='BATCH',company=selected_company)}}">Batch applicants</a></div>
+</div>
+
+<div class="card" id="upload-card">
+<form id="upload-form" method="post" enctype="multipart/form-data" action="{{url_for('main.upload' if mode=='SINGLE' else 'main.upload_bulk')}}">
+<input type="hidden" name="kind" value="{{kind}}">
+<div class="grid">
+  <div><label>INSURANCE COMPANY</label><select name="company" id="company" required>{% for company in companies %}<option value="{{company}}" {{'selected' if selected_company==company}}>{{company}}</option>{% endfor %}</select></div>
+  {% if kind=='NEW' %}<div><label>ISSUE / APPLICATION DATE</label><input type="date" name="apply_date" value="{{today}}" required><small class="hint">Departure is this date; arrival is six calendar months later.</small></div>
+  {% else %}<div><label>EMBASSY INTERVIEW DATE</label><div class="hintbox">Synced from the main recruitment system. This date sets departure to +14 days and arrival to +6 months. If no synced date exists yet, the applicant stays pending until the sync arrives.</div></div>{% endif %}
+</div>
+{% if mode=='SINGLE' %}
+  <div class="grid">
+    <div><label>Passport photo page</label><input type="file" name="passport" accept=".pdf,.png,.jpg,.jpeg" required></div>
+    <div><label>Police clearance report</label><input type="file" name="police" accept=".pdf,.png,.jpg,.jpeg" required><small class="hint">Address NO./STREET/CITY auto-extracted for every report.</small></div>
+    <div><label>Applicant application / phone document</label><input type="file" name="application" accept=".pdf,.png,.jpg,.jpeg"><small class="hint">Upload a readable page that shows the applicant’s mobile number. If none is present, the row stays blank for manual entry in Review.</small></div>
+    <div><label>Phone number (optional manual override)</label><input type="tel" name="telephone_manual" placeholder="07X XXX XXXX"><small class="hint">If known, enter it here; it will appear in the insurer-row preview.</small></div>
+    {% if kind=='EXTEND' %}<div><label>Existing insurance policy / certificate copy</label><input type="file" name="policy_doc" accept=".pdf,.png,.jpg,.jpeg"><small class="hint">OCR reads the existing policy number and fills the appropriate Allianz or LOLC policy-number column.</small></div>{% endif %}
+  </div>
+{% else %}
+  <div class="hintbox" style="margin:12px 0">Select one document at a time or multi-select a whole batch. You can reopen the picker to add more files; they accumulate in the list. One extraction run locally classifies passport pages, police reports, and applicant/phone forms{% if kind=='EXTEND' %}, plus existing policy documents{% endif %}.</div>
+  <div class="grid">
+    <div><label for="batch-files">All batch documents · choose one or many</label><input id="batch-files" type="file" name="batch_files" accept=".pdf,.png,.jpg,.jpeg" multiple required><small class="hint">Select separate document files; OCR will sort each into a category. Passport and police records are linked by passport number, then by order only when counts match.</small></div>
+  </div>
+  <div class="hintbox" style="margin-top:10px"><b>Selected files</b><div id="selected-file-count" class="subtle" style="margin:4px 0">No files selected</div><ul id="selected-file-list" style="margin:0;padding-left:20px"></ul></div>
+{% endif %}
+<div class="toolbar-actions" style="margin-top:12px"><button type="button" class="btn gray" id="remove-selected-files">Remove selected files</button><a class="btn red" href="{{url_for('main.insurance_home')}}">Cancel</a></div>
+<div class="toolbar" style="margin-top:12px"><div class="subtle" style="font-size:11px">OCR runs locally. Extracted values populate Review automatically and remain in the insurer-sheet preview below after refresh.</div><button id="extract-submit" type="submit" class="btn green">🔎 Extract &amp; show insurer preview</button></div>
+<div id="extract-progress" class="hintbox" role="status" aria-live="polite" hidden>OCR is processing the uploaded documents. The complete insurer-formatted row(s) will be saved below when extraction finishes.</div>
+</form>
+</div>
+
+{% if source_file_groups %}
+<div class="card" id="batch-source-documents">
+  <div class="toolbar"><div><div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Batch source documents</div><h2 style="margin:5px 0">Automatically grouped files</h2><div class="subtle">Local OCR classified each selected document. Check low-confidence labels and verify every applicant in Review.</div></div><span class="pill">{{source_file_job.status}} · {{source_file_groups|length}} categories</span></div>
+  <div class="grid" style="margin-top:12px">
+    {% for group in source_file_groups %}<div class="hintbox"><b>{{group.label}}</b><ul style="margin:7px 0 0;padding-left:18px">{% for file in group['items'] %}<li style="margin:6px 0"><span>{{file.name}}</span>{% if file.low_confidence %}<span class="pill" style="margin-left:6px;background:#fff0ef;color:#a33b32">Check category · {{(file.confidence*100)|round|int}}%</span>{% else %}<span class="pill" style="margin-left:6px">{{(file.confidence*100)|round|int}}%</span>{% endif %}<br><small class="subtle">{{file.reason}}</small></li>{% endfor %}</ul></div>{% endfor %}
+  </div>
+  {% if source_files_cleared %}<div class="hintbox" style="margin-top:12px">Source scans were cleared from this batch folder. Linked passport copies are retained for optional email attachment.</div>
+  {% elif source_file_job and source_file_job.status=='COMPLETE' %}<form method="post" action="{{url_for('main.clear_extraction_source_files',job_id=source_file_job.job_id)}}" style="margin-top:12px" onsubmit="return confirm('Clear this batch’s source scans from workspace storage? Applicant records stay. Linked passport copies will be preserved for later email attachment.');"><button class="btn red" type="submit">Clear uploaded source documents</button></form>{% endif %}
+</div>
+{% endif %}
+
+<div class="card" id="selected-company-preview" style="border:2px solid {{'#0c927a' if preview_records else '#e7ebf1'}};background:{{'#f7fffc' if preview_records else '#fff'}}">
+  <div class="toolbar"><div><div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">{% if preview_records %}Saved extracted applicant details{% else %}Exact insurer sheet format{% endif %}</div><h2 style="margin:5px 0">Selected company’s insurer-sheet preview</h2><div class="subtle">{{selected_company}} · {{kind}} · {{mode|title}}. Exact uploaded column names and order; no columns are added, removed, or rearranged.</div></div><span class="pill">{{selected_company}} · {{kind}}{% if preview_records %} · {{preview_records|length}} row(s){% endif %}</span></div>
+  <div class="hintbox" style="margin-top:10px">Salutation is read from the police report when present. Gender is derived from a gender-specific salutation; if the title is missing or does not identify gender, the corresponding field stays blank for review.</div>
+  {% if preview_records %}<form method="post" action="{{url_for('main.save_preview_choices')}}" id="preview-choices-form"><input type="hidden" name="company" value="{{selected_company}}"><input type="hidden" name="kind" value="{{kind}}"><input type="hidden" name="mode" value="{{mode}}">{% if source_file_job %}<input type="hidden" name="job_id" value="{{source_file_job.job_id}}">{% endif %}{% for record in preview_records %}<input type="hidden" name="applicant_ids" value="{{record.applicant.id}}">{% endfor %}{% endif %}
+  <div style="overflow:auto;margin-top:12px"><table id="format-preview" style="width:max-content;min-width:100%;font-size:11px"><thead><tr>{% for col in sheet_columns %}<th>{{col}}</th>{% endfor %}</tr></thead><tbody>
+    {% if preview_records %}
+      {% for record in preview_records %}<tr>{% for col in sheet_columns %}<td>
+        {% if col=='SALUTATION' and record.applicant.status in ('NEEDS_REVIEW','EXTEND_DRAFT') %}<select name="salutation_{{record.applicant.id}}" aria-label="{{col}} · {{record.applicant.id}}" style="min-width:120px"><option value="">Select</option>{% if record.row.get(col) and record.row.get(col) not in SALUTATIONS %}<option selected value="{{record.row.get(col)}}">{{record.row.get(col)}}</option>{% endif %}{% for option in SALUTATIONS %}<option value="{{option}}" {{'selected' if record.row.get(col)==option}}>{{option}}</option>{% endfor %}</select>
+        {% elif col=='GENDER' and record.applicant.status in ('NEEDS_REVIEW','EXTEND_DRAFT') %}<select name="gender_{{record.applicant.id}}" aria-label="{{col}} · {{record.applicant.id}}" style="min-width:110px"><option value="">Select</option>{% if record.row.get(col) and record.row.get(col) not in GENDERS %}<option selected value="{{record.row.get(col)}}">{{record.row.get(col)}}</option>{% endif %}{% for option in GENDERS %}<option value="{{option}}" {{'selected' if record.row.get(col)==option}}>{{option}}</option>{% endfor %}</select>
+        {% else %}{{record.row.get(col,'')}}{% endif %}
+      </td>{% endfor %}</tr>{% endfor %}
+    {% else %}
+      <tr>{% for col in sheet_columns %}<td>{% if col=='STATUS' %}{{default_map[selected_company]['STATUS_NEW' if kind=='NEW' else 'STATUS_EXTEND']}}{% else %}{{default_map[selected_company].get(col,'')}}{% endif %}</td>{% endfor %}</tr>
+    {% endif %}
+  </tbody></table></div>
+  {% if preview_records %}<div class="toolbar-actions" style="margin-top:12px"><button class="btn green" type="submit">Save salutation &amp; gender choices</button></div></form>{% endif %}
+  <div class="toolbar-actions" style="margin-top:14px"><form method="post" action="{{url_for('main.clear_insurance_preview')}}"><input type="hidden" name="kind" value="{{kind}}"><input type="hidden" name="mode" value="{{mode}}"><input type="hidden" name="company" value="{{selected_company}}"><button class="btn gray" type="submit">Clear form</button></form></div>
+</div>
+<script>
+const companySelect=document.getElementById('company');
+let currentCompany=companySelect.value;
+const batchMode={{ 'true' if mode=='BATCH' else 'false' }};
+const uploadForm=document.getElementById('upload-form');
+let selectedBatchFiles=batchMode?new DataTransfer():null;
+const batchPicker=batchMode?document.getElementById('batch-files'):null;
+function fileKey(f){return [f.name,f.size,f.lastModified].join('|');}
+function renderSelectedBatchFiles(){
+  const list=document.getElementById('selected-file-list');
+  const count=document.getElementById('selected-file-count');
+  if(!list||!count||!selectedBatchFiles)return;
+  list.replaceChildren();
+  const files=Array.from(selectedBatchFiles.files);
+  count.textContent=files.length?`${files.length} document(s) selected — they will be auto-sorted after extraction.`:'No files selected';
+  files.forEach((file,index)=>{
+    const li=document.createElement('li');
+    const text=document.createElement('span');
+    text.textContent=`${file.name} (${(file.size/1024).toFixed(0)} KB)`;
+    const remove=document.createElement('button');
+    remove.type='button';remove.className='btn gray';remove.textContent='Remove';
+    remove.style.cssText='margin:3px 0 3px 8px;padding:4px 8px;font-size:10px';
+    remove.addEventListener('click',()=>{
+      const next=new DataTransfer();
+      Array.from(selectedBatchFiles.files).forEach((f,i)=>{if(i!==index)next.items.add(f);});
+      selectedBatchFiles=next;batchPicker.files=selectedBatchFiles.files;renderSelectedBatchFiles();
+    });
+    li.append(text,remove);list.appendChild(li);
+  });
+}
+if(batchMode&&batchPicker){
+  batchPicker.addEventListener('change',()=>{
+    const existing=new Set(Array.from(selectedBatchFiles.files).map(fileKey));
+    Array.from(batchPicker.files).forEach(file=>{
+      const key=fileKey(file);if(!existing.has(key)){selectedBatchFiles.items.add(file);existing.add(key);}
+    });
+    batchPicker.files=selectedBatchFiles.files;renderSelectedBatchFiles();
+  });
+}
+companySelect.addEventListener('change',()=>{
+  if(batchMode&&selectedBatchFiles&&selectedBatchFiles.files.length){
+    alert('Please extract or clear the selected files before changing the company, so the browser does not lose them.');
+    companySelect.value=currentCompany;
+    return;
+  }
+  currentCompany=companySelect.value;
+  const url=new URL(window.location.href);
+  url.searchParams.set('company',companySelect.value);
+  url.searchParams.delete('preview_ids');url.searchParams.delete('job_id');
+  window.location.assign(url.toString());
+});
+uploadForm.addEventListener('submit',event=>{
+  if(batchMode&&(!batchPicker||!batchPicker.files.length)){event.preventDefault();alert('Select at least one batch document first.');return;}
+  const button=document.getElementById('extract-submit');button.disabled=true;button.textContent='⏳ Extracting documents…';document.getElementById('extract-progress').hidden=false;
+});
+document.getElementById('remove-selected-files').addEventListener('click',()=>{
+  if(batchMode&&batchPicker){selectedBatchFiles=new DataTransfer();batchPicker.value='';batchPicker.files=selectedBatchFiles.files;renderSelectedBatchFiles();}
+  else uploadForm.querySelectorAll('input[type=file]').forEach(input=>input.value='');
+});
+</script>{% endblock %}

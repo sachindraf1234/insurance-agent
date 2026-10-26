@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block title %}Executive Dashboard · Trans Arabian{% endblock %}{% block body %}
+<div class="card">
+  <div class="toolbar">
+    <div><div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Agency operations</div><h2 style="margin:0">Executive Dashboard</h2><div class="subtle" style="font-size:12px;margin-top:5px">Key insurance workload and applicant status at a glance.</div></div>
+    {% if main_system_connected %}<span class="pill" style="background:#e5f8f2;color:#087b64">Recruitment system sync · Connected</span>{% else %}<span class="pill" style="background:#fff5dc;color:#8a6211">Recruitment system sync · Not configured</span>{% endif %}
+  </div>
+  <div style="margin:15px -4px -4px">
+    {% for k,v in stats.items() %}<div class="stat"><b>{{v}}</b>{{{'NEEDS_REVIEW':'Pending review','APPROVED':'Approved','EMAIL_SENT':'Email sent','AWAITING_REPLY':'Awaiting insurer','POLICY_RECEIVED':'Policies received','EXTEND_DRAFT':'Extension drafts'}.get(k,k.replace('_',' ')|title)}}</div>{% endfor %}
+  </div>
+</div>
+<div class="card">
+  <form method="post" action="{{url_for('main.clear_dashboard_recent_applicants')}}" onsubmit="return confirm('Clear the selected applicants from active tables? Their records will be retained and can be restored from Applicants → Cancelled.');">
+    <div class="toolbar"><div><h3 style="margin:0">Recent applicants</h3><div class="subtle" style="font-size:11px;margin-top:4px">Pending applicants appear first; newest records follow. INS numbers stay attached to their records.</div></div><button class="btn red" type="submit" {% if not clearable_ids %}disabled{% endif %}>Clear selected</button></div>
+    <div style="overflow:auto"><table><tr><th><input type="checkbox" id="select-all-recent" aria-label="Select all clearable recent applicants"></th><th>#</th><th>Applicant name</th><th>Passport</th><th>Insurer</th><th>Type</th><th>Entry</th><th>City</th><th>Status</th></tr>
+    {% for a in recent %}<tr><td>{% if a.id in clearable_ids %}<input type="checkbox" class="recent-applicant-select" name="applicant_ids" value="{{a.id}}" aria-label="Select INS {{a.id}}">{% else %}<span class="subtle" title="Applicant belongs to a prepared/sent workflow and cannot be cleared here">—</span>{% endif %}</td><td>INS {{a.id}}</td><td><b>{{a.surname}} {{a.given_names}}</b></td><td>{{a.passport_no}}</td><td>{{a.company}}</td><td>{{a.kind}}</td><td>{{a.entry_mode|title}}</td><td>{{a.city}}</td><td><span class="pill">{{a.status.replace('_',' ')}}</span></td></tr>
+    {% else %}<tr><td colspan="9" style="padding:25px;text-align:center;color:#77849a">No applicant records yet.</td></tr>{% endfor %}</table></div>
+  </form>
+</div>
+<script>
+  const selectAllRecent = document.getElementById('select-all-recent');
+  if (selectAllRecent) selectAllRecent.addEventListener('change', () => {
+    document.querySelectorAll('.recent-applicant-select').forEach((checkbox) => { checkbox.checked = selectAllRecent.checked; });
+  });
+</script>
+{% endblock %}
