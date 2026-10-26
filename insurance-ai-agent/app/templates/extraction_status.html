@@ -1,0 +1,54 @@
+{% extends "base.html" %}{% block title %}Document extraction · Insurance{% endblock %}{% block body %}
+<div class="card" id="job-card" data-status-url="{{url_for('main.extraction_job_status',job_id=job.job_id)}}" data-kind="{{job.kind}}" data-company="{{job.company}}">
+  <div class="toolbar"><div><div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">{{job.company}} · {{job.kind}} · {{job.entry_mode|title}}</div><h2 style="margin:5px 0">Extracting applicant details</h2><div class="subtle">The OCR job is running separately so the connection stays available. Keep this page open; you may also refresh it safely.</div></div><span class="pill" id="job-state">{{job.status}}</span></div>
+  <div class="hintbox" id="job-message" style="margin-top:14px">{{job.message}}</div>
+  <div style="height:12px;background:#edf2f7;border-radius:9px;overflow:hidden;margin-top:14px"><div id="job-progress" style="height:100%;width:{{job.progress}}%;background:#0c927a;transition:width .3s"></div></div>
+  <div id="classified-files" class="hintbox" style="display:none;margin-top:14px"><b>Auto-classified batch documents</b><div id="classified-file-groups" class="grid" style="margin-top:8px"></div></div>
+  <p id="job-error" style="display:none;color:#a33b32;white-space:pre-wrap"></p>
+  <div id="job-actions" class="toolbar-actions" style="margin-top:14px;display:none"><a class="btn gray" href="{{url_for('main.insurance_entry',kind=job.kind,mode=job.entry_mode,company=job.company)}}">Return to insurance upload</a></div>
+</div>
+<script>
+const card=document.getElementById('job-card');
+const stateEl=document.getElementById('job-state');
+const messageEl=document.getElementById('job-message');
+const progressEl=document.getElementById('job-progress');
+const errorEl=document.getElementById('job-error');
+const actionsEl=document.getElementById('job-actions');
+const classifiedFiles=document.getElementById('classified-files');
+const classifiedGroups=document.getElementById('classified-file-groups');
+let polling=true;
+function renderClassifiedFiles(groups){
+  if(!Array.isArray(groups)||!groups.length)return;
+  classifiedGroups.replaceChildren();
+  groups.forEach(group=>{
+    const box=document.createElement('div');box.className='hintbox';
+    const title=document.createElement('b');title.textContent=group.label;box.appendChild(title);
+    const ul=document.createElement('ul');ul.style.cssText='margin:6px 0 0;padding-left:18px';
+    (group['items']||[]).forEach(file=>{
+      const li=document.createElement('li');
+      li.textContent=file.name+(file.low_confidence?` — check category (${Math.round((file.confidence||0)*100)}%)`:` — ${Math.round((file.confidence||0)*100)}%`);
+      ul.appendChild(li);
+    });
+    box.appendChild(ul);classifiedGroups.appendChild(box);
+  });
+  classifiedFiles.style.display='block';
+}
+async function checkJob(){
+  if(!polling)return;
+  try{
+    const response=await fetch(card.dataset.statusUrl,{cache:'no-store',headers:{'Accept':'application/json'}});
+    if(!response.ok)throw new Error('Status request returned '+response.status);
+    const job=await response.json();
+    stateEl.textContent=job.status;
+    messageEl.textContent=job.message||'Working…';
+    progressEl.style.width=Math.max(0,Math.min(100,Number(job.progress)||0))+'%';
+    renderClassifiedFiles(job.file_groups||[]);
+    if(job.status==='COMPLETE'&&job.redirect_url){polling=false;stateEl.textContent='COMPLETE';messageEl.textContent='Extraction complete. Opening the saved insurer-sheet preview…';window.location.replace(job.redirect_url);return;}
+    if(job.status==='FAILED'){
+      polling=false;stateEl.textContent='FAILED';errorEl.textContent=job.error||'Extraction failed. Check the files and try again.';errorEl.style.display='block';actionsEl.style.display='flex';return;
+    }
+  }catch(error){messageEl.textContent='Still waiting for the local extraction service…';}
+  setTimeout(checkJob,1400);
+}
+checkJob();
+</script>{% endblock %}

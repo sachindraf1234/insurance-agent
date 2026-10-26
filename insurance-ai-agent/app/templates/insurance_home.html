@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block title %}Insurance · Trans Arabian{% endblock %}{% block body %}
+<div class="card">
+  <div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Insurance workspace</div>
+  <h2 style="margin:0 0 6px">Insurance</h2>
+  <div class="subtle">Choose NEW or EXTEND. Select Single or Batch on the selected workflow page.</div>
+</div>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:stretch">
+  <section class="card" aria-labelledby="new-title">
+    <div class="pill" style="background:#e6f7f2;color:#087b68;margin-bottom:12px">NEW</div>
+    <h3 id="new-title">New insurance applications</h3>
+    <p class="subtle">Create new cover. Departure is set to the issue date; arrival is six calendar months later.</p>
+    <div class="toolbar-actions" style="margin-top:18px">
+      <a class="btn green" href="{{url_for('main.insurance_entry',kind='NEW',mode='SINGLE')}}">Open NEW</a>
+    </div>
+  </section>
+  <section class="card" aria-labelledby="extend-title">
+    <div class="pill" style="background:#eef2fb;color:#405a8a;margin-bottom:12px">EXTEND</div>
+    <h3 id="extend-title">Extend existing insurance</h3>
+    <p class="subtle">Use the interview date synced from the recruitment system. Departure is interview date +14 days.</p>
+    <div class="toolbar-actions" style="margin-top:18px">
+      <a class="btn green" href="{{url_for('main.insurance_entry',kind='EXTEND',mode='SINGLE')}}">Open EXTEND</a>
+    </div>
+  </section>
+</div>
+{% endblock %}

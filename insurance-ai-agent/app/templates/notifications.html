@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block body %}
+<div class="card">
+  <div class="toolbar" style="margin-bottom:14px">
+    <h2>🔔 Notifications</h2>
+    {% if rows %}
+    <form method="post" action="{{ url_for('main.clear_notifications') }}" onsubmit="return confirm('Clear all notifications? This cannot be undone. Applicant records and email logs will be kept.');">
+      <button class="btn red" type="submit">Clear notifications</button>
+    </form>
+    {% endif %}
+  </div>
+  {% for n in rows %}
+    <p>• <b>[{{n.level}}] {{n.title}}</b><br><small>{{n.at}} — {{n.body}}</small></p><hr>
+  {% else %}
+    <p>No notifications yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

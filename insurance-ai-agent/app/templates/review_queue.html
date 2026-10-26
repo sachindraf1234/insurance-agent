@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Review Queue · Trans Arabian{% endblock %}{% block body %}
+<div class="card"><div class="toolbar"><div><div class="subtle" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Review workspace</div><h2 style="margin:5px 0">Applicant review</h2><div class="subtle">Choose the insurer first. Batch uploads are kept as separate numbered groups for that company.</div></div><a class="btn green" href="{{url_for('main.emails')}}">Open Email queue →</a></div>
+<div class="toolbar-actions" style="margin-top:14px"><a class="btn {{'dark' if kind=='NEW' else 'gray'}}" href="{{url_for('main.review_queue',kind='NEW',mode=mode,status=status,company=company)}}">NEW</a><a class="btn {{'dark' if kind=='EXTEND' else 'gray'}}" href="{{url_for('main.review_queue',kind='EXTEND',mode=mode,status=status,company=company)}}">EXTEND</a></div>
+<div class="toolbar-actions" style="margin-top:8px"><a class="btn {{'green' if mode=='SINGLE' else 'gray'}}" href="{{url_for('main.review_queue',kind=kind,mode='SINGLE',status=status,company=company)}}">Single</a><a class="btn {{'green' if mode=='BATCH' else 'gray'}}" href="{{url_for('main.review_queue',kind=kind,mode='BATCH',status=status,company=company)}}">Batch</a></div>
+<div class="toolbar-actions" style="margin-top:8px"><a class="btn {{'orange' if status=='PENDING' else 'gray'}}" href="{{url_for('main.review_queue',kind=kind,mode=mode,status='PENDING',company=company)}}">Pending approval · {{counts.PENDING}}</a><a class="btn {{'green' if status=='APPROVED' else 'gray'}}" href="{{url_for('main.review_queue',kind=kind,mode=mode,status='APPROVED',company=company)}}">Approved · {{counts.APPROVED}}</a></div>
+</div>
+<div class="card"><h3>Choose insurance company</h3><div class="toolbar-actions">{% for name in companies %}<a class="btn {{'green' if company==name else 'dark'}}" href="{{url_for('main.review_queue',kind=kind,mode=mode,status=status,company=name)}}">{{name}} · {{company_counts[name]}} {{'pending' if status=='PENDING' else 'approved'}}</a>{% endfor %}</div></div>
+{% if company %}
+  {% if mode=='BATCH' %}
+  <div class="card"><div class="toolbar"><h3>{{company}} · {{kind}} batch groups · {{'Pending approval' if status=='PENDING' else 'Approved'}}</h3><span class="pill">{{groups|length}} group(s)</span></div>
+    {% for item in groups %}<div class="toolbar" style="border:1px solid #e7ebf1;border-radius:12px;padding:14px;margin:10px 0"><div><h3 style="margin:0 0 5px">Group {{'%02d'|format(item.group.group_number)}}</h3><div class="subtle">{{item.group.company}} · {{item.group.kind}} · {{item.rows|length}} {{'pending' if status=='PENDING' else 'approved'}} applicant(s) · created {{item.group.created_at.strftime('%Y-%m-%d %H:%M')}}</div><div class="subtle" style="font-size:11px;margin-top:4px">Group progress: {{item.approved}} approved · {{item.pending}} pending</div></div><a class="btn green" href="{{url_for('main.review_group',group_id=item.group.id,status=status)}}">Open Group {{'%02d'|format(item.group.group_number)}} Review</a></div>
+    {% else %}<div class="hintbox">No {{status|lower}} {{kind}} groups for {{company}}.</div>{% endfor %}
+  </div>
+  {% else %}
+  <div class="card"><div class="toolbar"><h3>{{company}} · {{kind}} single applicants · {{'Pending approval' if status=='PENDING' else 'Approved'}}</h3><span class="pill">{{rows|length}} record(s)</span></div>
+  <div style="overflow:auto"><table><tr><th>Applicant</th><th>Passport</th><th>Issue / Interview date</th><th>Departure</th><th>Arrival</th><th>City</th><th>Status</th><th>Review</th></tr>
+  {% for a in rows %}<tr><td><b>{{a.surname}} {{a.given_names}}</b><br><small class="subtle">INS {{a.id}}</small></td><td>{{a.passport_no}}</td><td>{{a.issue_date if kind=='NEW' else a.embassy_appointment_date or 'Awaiting sync'}}</td><td>{{a.departure_date or '—'}}</td><td>{{a.arrival_date or '—'}}</td><td>{{a.city or 'Needs review'}}</td><td><span class="pill">{{a.status.replace('_',' ')}}</span></td><td><a class="btn gray" href="{{url_for('main.review',aid=a.id)}}">Open review</a></td></tr>
+  {% else %}<tr><td colspan="8" style="padding:28px;text-align:center;color:#77849a">No {{status|lower}} {{kind}} single applicants for {{company}}.</td></tr>{% endfor %}</table></div>
+  </div>
+  {% endif %}
+{% endif %}
+{% endblock %}
