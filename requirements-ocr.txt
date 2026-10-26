@@ -1,0 +1,14 @@
+# Free, local OCR (same engine is included in requirements.txt so the upload
+# extraction button works after the standard installation).
+rapidocr>=3.10.0
+onnxruntime>=1.19             # required local inference runtime for RapidOCR 3.x
+opencv-python-headless>=4.9
+numpy>=1.26,<3
+
+# Optional alternate backend for environments where the current PaddleOCR
+# packages support the selected Python version (typically Python 3.10–3.12):
+# paddlepaddle>=2.6
+# paddleocr>=2.8
+
+# Optional fallback; also requires the Tesseract 5 system executable:
+# pytesseract>=0.3.13
