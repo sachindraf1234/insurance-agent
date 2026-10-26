@@ -1,0 +1,17 @@
+# Core app, Excel/email/integration tools, and free local RapidOCR for document extraction.
+Flask>=3.0
+Flask-SQLAlchemy>=3.1
+openpyxl>=3.1
+PyMuPDF>=1.24
+rapidocr>=3.10.0             # free local PP-OCRv6 OCR; enables passport/police/policy extraction
+onnxruntime>=1.19            # RapidOCR's local CPU inference backend (no cloud calls)
+PyYAML>=6.0
+python-dotenv>=1.0
+python-dateutil>=2.9
+RapidFuzz>=3.9
+Pillow>=10.0
+requests>=2.32
+# Browser automation (email-via-webmail + embassy portal). After pip install run: playwright install chromium
+playwright>=1.44
+# MCP server (AI-assistant tools)
+mcp>=1.2,<2.0

@@ -1,0 +1,59 @@
+# ── Insurance AI Agent settings ──────────────────────────────────────────────
+# Secrets (passwords) go in .env — NOT here. See .env.example.
+companies:
+  ALLIANZ:
+    email_to: "chamikafernando456@gmail.com"
+    email_cc: "chamikaf@allianz.lk"
+    subject_new: "New Travel Insurance Applications - {date} ({count} pax)"
+    subject_extend: "Extend Travel Insurance Policy Dates- part ##"
+    date_sep: "/"           # Legacy setting; exact sheet output is per-column (policy dates M/D/YYYY, birthday DD.MM.YYYY).
+    defaults:               # verified from the supplied Allianz NEW and EXTEND forms
+      TERRITORIAL AREA: "Worldwide E"
+      PRODUCT: "Single Trip Gold Plan - USD 50,000 Coverage (per person)"
+      TOTAL PREMIUM: 15500
+      AGENT NAME: "DDP JAYASURIYA"
+      ACS AGENT CODE: "0016938"
+      I CODE: "0017183"
+      INDIVIDUAL CONTRACT: "Overseas Emergency Accident and Sickness Medical Expenses-50 000  Deductible 100"
+      STATUS_NEW: "NEW"
+      STATUS_EXTEND: "EXTEND"
+  LOLC:
+    email_to: "suthsil73@gmail.com"
+    email_cc: ""
+    subject_new: "APPLYING FOR NEW INSURANCES"
+    subject_extend: "Extend Travel Insurance Policy Dates- part  ##"
+    date_sep: "."           # Matches LOLC sample DD.MM.YYYY; exact sheet output is enforced per column.
+
+email:
+  mode: "smtp"              # smtp  |  playwright   (Playwright = send via webmail in a browser)
+  smtp_host: "smtp.mail.yahoo.com"
+  smtp_port: 587
+  imap_host: "imap.mail.yahoo.com"
+  imap_port: 993
+  poll_seconds: 120         # inbox watcher interval
+  reply_from:               # Only unread replies from these exact addresses are fetched/processed
+    - "chamikafernando456@gmail.com"
+    - "chamikaf@allianz.lk"
+    - "warunic@allianz.lk"
+    - "suthsil73@gmail.com"
+  auto_send_after_prepare: false  # UI toggle: Singles send on approval; Batches wait for all same-date approvals
+  webmail: "gmail"          # gmail | outlook   (only for mode=playwright)
+
+embassy:
+  # How do appointment dates arrive? All three channels are supported at once:
+  watch_email_keywords: ["appointment", "interview", "embassy", "visa"]
+  portal_url: ""            # optional: Playwright watcher URL (playwright_agent/embassy_watcher.py)
+
+ocr:
+  confidence_threshold: 0.82   # below this a field is highlighted red in Review
+  use_ollama_vlm: false        # set true after: ollama pull qwen2.5vl:7b
+  ollama_host: "http://localhost:11434"
+  ollama_model: "qwen2.5vl:7b"
+
+city:
+  case: "as_in_list"        # as_in_list (dropdown-exact) | upper
+  fuzzy_threshold: 86
+
+notify:
+  telegram_bot_token: ""    # optional free push notifications (or set in .env)
+  telegram_chat_id: ""
