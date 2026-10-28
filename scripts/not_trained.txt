@@ -1,0 +1,145 @@
+SLBFE Pre Departure Training check - 2026-10-26 23:37
+Applicants without a confirmed Pre Departure Training: 142
+
+No.  1  GALGODAPITIYA MUDIYANSELAGE LAKMAL SANJEEWA BANDARA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.  2  VAIYAPURI THARMASEELAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration, Training
+No.  3  HEMBATHANTHRIGE THARUSHIKA NADEESHANI FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.  4  PEDURU HEWA LAHIRU MADURANGA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.  5  MARASINGHA KODIKARAGE DILANI DELKA CHATHURANGANI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration, Training
+No.  6  JAYASURIYA KURANAGE NISHADINI PRASANGIKA PERERA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.  7  APPUHAMY MAHAWATHTHAGE DON SHASHINI NIMASHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.  8  PALPOLA LOKULIYANAGE SEMINA GANGANATHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.  9  ARTHANAYAKA PRAMAL SACHINTHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 10  PONNAM PERUMAGE RANDUNU JAYASHAN FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 11  WARNAKULASURIYA PORUTHOTAGE USHAN THIWANKA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 12  KURUKULAARACHCHI HESHAN MADHUWANTHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 13  RAJAPAKSHA MUDIYANSELAGE MALEESHA SANKALPA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 14  KODIPPILI YAKDEHIGE SEWWANDI THAKSHILA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 15  MAHAGURUGE SACHINTHA MALSHAN FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 16  MALAWIGE MALEESHA NETHMINI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 17  WARNAKULASURIYA KUDAGAMMANAGE MADUSHAN KAVINDA SANDARUWAN FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 18  FERNANDO WARNAKULASURIYA MADHUSHANI THARAKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 19  UDAMADAGEDARA SANDUN CHAMARA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 20  METHTHASINGHE ARACHCHILAGE SUMUDITHA SANJEEWA SURESH  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 21  BIHIRI MANAGE ISHAN MADHUSHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 22  SADARATH JAYASEKARA MUDIYANSELAGE CHANAKA ISHARA BANDARUWAN  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 23  WARNAKULASURIYA NIRASHA HIRUNI CROOS  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 24  AMBAGAHAGE SALANI MANEESHA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 25  WARNAKULA THOMMAGE SAMADHI SHASHIPRABHA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 26  KURUKULASOORIYA SANSALA THARUSHI FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 27  SAMARASINGHE DAMMIKA PRIYADARSHANI SAMARASINGHE  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 28  JAYAMANNA ARACHCHIGE RASHMIKA HESHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 29  BULATHSINHALAGE DON SANDUNI MADHUSHI KAPILA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 30  FERNANDO AMBAGAHAGE PIYUMI IMASHI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 31  WELANDAGE MANEESHA NETHMINI APPUHAMY  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 32  DE SILVA MALKI IMASHA SEWWANDI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 33  WARNAKULASURIYA NETHULI PRAVINDAYA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 34  JAYASOORIYA KURANAGE KAVISHI SANJANA PERERA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 35  MALLAWA ARACHCHILAGE CHANCHALA KAVINDI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 36  MIHIDUKULASURIYA ASHITHA RANGA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 37  RANDENI ARACHCHILAGE MANUSHA NETHMIKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 38  WARNAKULASOORIYA MAHAMALAGE THARINDU CHAMIKARA PERERA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 39  DIAS KURUKULASURIYA RAVIN PRAMANGA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 40  JAYASURIYA KURANAGE KAVINDA SURAJ PERERA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 41  HAPAN PEDIGE RAVISHKA PASINDU KUMARA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 42  ILANGARAN PEDIGE DULAKSHANA KAUSHALYA JAYASHANTHA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 43  WICKRAMAGE HASUN LAKSHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 44  WARNAKULASURIYA NAVEEN PRIYADARSHANA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 45  RAMANAYAKAGE CHANUKA DULSHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 46  ALAHAKOON ARACHCHILAGE GAYAN PRADEEP ALAHAKOON  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 47  POLWATTHTHAGE DUMIDU PIYANKARA KOSTHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 48  KANUGALA WATHTHAGE IMALI HANSIKA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 49  RAJAPAKSHAGE DAMITH PRASAD RAJAPAKSHA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 50  WASALA MUDIYANSELAGE LAHIRU MADHUSHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No. 51  PADUWALA KANKANAMALAGE SHEHANI NISANSA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 52  BALASURIYA LEKAMALAGE KOSHALA DANANJAYA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 53  LEWLE GEDARA HIRUNI SAVINDI AMARASINGHE  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 54  PANAMBARAGE GIHAN RUKMAL FONSEKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 55  SETHUNGAGE HIRUNI NISANSALA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 56  KAHANDAWA APPUHAMILAGE SHERONI AVISHKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 57  COSTHA DEHIWALAGE CHRISTIAN DIMUTHU NUWAN SRILAL  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 58  DISSANAYAKE JAYAWEERA GASPERALALAGE THEEKSHANA SANDARUWAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 59  WIJESINGHE ARACHCHILAGE DINITHI KAVINDYA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 60  KURUKULASOORIYA EMMANUWEL NALAKA MIHINTHAL FONSEKA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 61  MUTHUNAMA GONNAGE SENURA DIMAL FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 62  MENDIS KARUNARATNA RAJAPAKSA HARITH NAWIN  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 63  ANTHONY SILVAGE SUDESH PRIYANTHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 64  WILLAP FRANSISGE ANTANI NISHANTHA SOVIS  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 65  JAYALATH PEDIDURAYALAGE THAKSHILA WIJAYAMALE JAYALATH  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration, Training
+No. 66  WARNAKULASOORIYA KRISTHOGUGE LEHAN KAVINDU FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 67  MIGELKUTTIGE SUMUDU PRIYADARSHANA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 68  WARNAKULASURIYA PRADEEP RANGA KUMAR FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 69  MUTHTHAYYA PRAKASH LAKSHAN VIRAJ  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 70  PONWEERA ARACHCHIGE DON RUCHIRA MADUSHAN APPUHAMY  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 71  KODIKARAGE RASHINTHA KAUSHAN KODIKARAGE  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 72  WARNAKULASOORIYA SENARA DINITHI FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 73  FERNANDO WARNAKULASURIYA DILMI CHATURIKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 74  WARNAKULASURIYA MAHAMUGE GIMES KALHARA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration, Training
+No. 75  INGURUWATTAGE KAVEESHA GEESHAN FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 76  FERNANDO WARNAKULASURIYA SHANAKA CRISHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 77  GALAGODAGEDARA MUDIYANSELAGE DHANANJAYA DILRUK  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 78  FERNANDO WARNAKULASURIYA ICHCHAMPULLIGE ROMAL NIDUKTHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 79  SUDASIN MANCHANAYAKA APPUHAMILAGE WASALA KASUN JAYASANKA MANCHANAYAKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 80  DABARERA WARNAKULASOORIYA SHALANI CRISENTA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 81  JAYASINGHE MADDUMA WAVWEGE CHAMATH RASHMIKA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No. 82  BAMBARANDA GAMAGE CHAMIL SHIWANKA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 83  ALGAM PITIGE ASHAN THARUKA LAKMAL APPUHAMY  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 84  SURIYA ARACHCHILAGE CHATHUMIKA LAKSHAN SURIYAARACHCHI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 85  GEEKIYANAGE KAVINDU MILINDA LAKSHAN FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 86  FERNANDO WARNAKULASURIYA RAJIVE SANJAYA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 87  SURAWEERA ARACHCHIGE PUBUDITHA SENAHAS  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 88  RAJAPAKSHA PATHIRENNAHELAGE RANIDU SHEHARA APPUHAMY  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 89  NANAYAKKARA WARNAKULA PATABADIGE NIMESHA PRIYASANI PERERA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No. 90  FERNANDO WARNAKULASURIYA THARUSHI DIMITHRIKA SHIROMI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 91  WARNAKULASURIYA SUDESHIKA LAKSHANI FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 92  WALAWATHTHE GEDARA PUNYALATHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: ?, Training
+No. 93  ANTON RUPAS BOSHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 94  RANDUNU PATHIRANNAHALAGE DUSHMINDA DILSHAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 95  KORALAGAMAGE CHAMOD UDAYANGA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 96  APPU ARACHCHIGE DON BINAL SACHINTHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 97  POLGAMPALAGE PASINDU IROSHAN KARUNARATNE  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No. 98  MATHUGAMA VIDANALAGE LAKMAL SANDARUWAN SANJEEWA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No. 99  MAHAWATTHAGE DON CHANAKA PRADEEP KUMARA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.100  UDUGAMPALAGE NIRASH SEHARA FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.101  PINNAWALA ARACHCHILAGE SUPUN SANJALA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.102  WIJESINGHE ARACHCHIGE DAMITH NIDUSHAN  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.103  MALLAWA THANTHREELAGE HESHAN LAKSHITHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.104  FERNANDO WARNAKULASURIYA KAVINDU LAKSHEN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.105  JAYASINGHE MUDALIGE CHAMITH LAKSHITHA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.106  BALASUBRAMANIYAM NAGESWARAN  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No.107  MEEGASWATHTHA DISANAYAKA MUDIYANSELAGE RUVINDI SANJANA MEEGASWATHTHA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.108  RASAKUMAR SRI DEVI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.109  SAMPATH DEWAGE NIPUNEE KAWSHALYA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.110  JULI HETTI ARACHCHIGE RUWANI NIDISHANI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.111  HABARAGODA MUDIYANSELAGE ISHANKA DILANI PERERA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.112  SELVARAJ SASHIKA SUNALI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.113  CHANDRASEKARA MUDIYANSELAGE GAYATHRI AVISHKA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.114  ARANOLIS APPUHAMILAGE CHANDEEPA NISADA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.115  RATHNAYAKA MUDIYANSELAGE NAVODYA KUMUDUNI BANDARA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.116  WARNAKULASOORIYA NIPUNI SADAMINI PIRIS  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.117  HAPUWALANA ARACHCHIGE DONA MALEESHA SEWMINI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.118  WARNAKULASURIYA SANDALI KAVINDYA FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.119  WIJETHUNGALAGE HIRUSHI MADHAVI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.120  MUHANDIRAM ARACHCHIGE NAWODYA OSHADI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.121  MERAGAL PEDIGE RASHENI NAYANJANA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.122  ADIKARI MUDIYANSELAGE ANN RAPINA PIUMA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.123  AMBAGAHAGE WASANA SUMUDU KUMARI JAYALATH FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.124  CHACKRAWARTHIGE KAWYA MADHUWANTHI FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.125  LIYANAGAMAGE NITHISHA RISHMI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.126  DODAMTHANNAGE VISHMI MADARA KALUKOTUWA  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No.127  HEWAPATHIRANAGE SHAVINDYA GANANJANI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.128  DABARERA PUNSARA NATHASHA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.129  JAYASURIYA KURANAGE SEHANI HIMASHA PERERA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.130  SOZA SIWMINI SEWWANDI NATASHA SOZA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.131  MIHINDUKULASURIYA NEELIYA KAUSHALYA FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.132  KADUPITI ARACHCHIGE NIPUNI NADEERA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.133  WEERAKOON MUDIYANSELAGE CHATHURI NISANSALA WEERAKOON  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No.134  MIHIDUKULASURIYA ME BADDAGE MANISHA DILUKSHI FERNANDO  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.135  JAYASURIYA PATHIRANALAGE DON HIRUNI KAWSHALYA JAYASURIYA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.136  KODIKARA ARACHCHIGE DILANI IRESHA KANCHANAMALA PERERA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.137  GALOLU MUDIYANSELAGE DINESHA MADHUSHANI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.138  THAMMITAGE BIMALI YASHODHA PERERA  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.139  ANTHONY PULLE MALSHA RASHINI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
+No.140  DEEKIRI KAWAGE HANSIKA PIYUMALI  [INCOMPLETE]  Unrecognised result page (see debug_* files) - re-run to retry
+No.141  MIRISAGE AVISHKA GIMHANI FERNANDO  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Training
+No.142  JAYAKODY ARACHCHILAGE RENUKA DAMAYANTHI  [NOT_TRAINED]  Records exist but NO Pre Departure Training. Found only: Registration
